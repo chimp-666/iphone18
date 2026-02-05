@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 18 - 爱情公寓特别版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #f5f5f7;
+        }
+
+        .nav-links a {
+            color: #f5f5f7;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #0071e3;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+            position: relative;
+            padding: 100px 30px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.15) 0%, transparent 70%);
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: pulse 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; }
+            50% { transform: translateX(-50%) scale(1.2); opacity: 0.8; }
+        }
+
+        .hero-title {
+            font-size: 80px;
+            font-weight: 700;
+            letter-spacing: -3px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #ff6b6b 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: 28px;
+            color: #86868b;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-tagline {
+            font-size: 14px;
+            color: #0071e3;
+            margin-bottom: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-iphone-text {
+            font-size: 64px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 40px;
+            letter-spacing: -2px;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #0071e3, #00d2ff);
+            color: #fff;
+            border: none;
+            padding: 18px 40px;
+            font-size: 18px;
+            border-radius: 980px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 113, 227, 0.4);
+        }
+
+        /* Phone Mockup */
+        .phone-container {
+            margin-top: 80px;
+            position: relative;
+        }
+
+        .phone {
+            width: 180px;
+            height: 700px;
+            background: linear-gradient(145deg, #ffffff, #e8e8e8);
+            border-radius: 35px;
+            position: relative;
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.4),
+                0 40px 100px rgba(0, 0, 0, 0.5),
+                inset 0 0 40px rgba(0, 0, 0, 0.08);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .phone-screen {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            right: 6px;
+            bottom: 6px;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 26px;
+            background: #000;
+            border-radius: 18px;
+        }
+
+        .hologram-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: rotate3d 10s linear infinite;
+        }
+
+        @keyframes rotate3d {
+            0% { transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg); }
+            100% { transform: translate(-50%, -50%) rotateX(360deg) rotateY(360deg); }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 150px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 100px;
+            letter-spacing: -2px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, #1c1c1e, #2c2c2e);
+            border-radius: 30px;
+            padding: 50px;
+            transition: transform 0.4s, box-shadow 0.4s;
+            border: 1px solid #3a3a3c;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+
+        .feature-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #f5f5f7;
+        }
+
+        .feature-desc {
+            font-size: 17px;
+            color: #86868b;
+            line-height: 1.6;
+        }
+
+        .feature-quote {
+            font-style: italic;
+            color: #ff6b6b;
+            margin-top: 20px;
+            font-size: 15px;
+        }
+
+        /* Character Quotes */
+        .quotes-section {
+            padding: 150px 30px;
+            background: linear-gradient(180deg, #000 0%, #1a1a2e 50%, #000 100%);
+        }
+
+        .quote-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .quote-item {
+            text-align: center;
+            padding: 60px 0;
+            border-bottom: 1px solid #3a3a3c;
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .quote-item:nth-child(1) { animation-delay: 0.2s; }
+        .quote-item:nth-child(2) { animation-delay: 0.4s; }
+        .quote-item:nth-child(3) { animation-delay: 0.6s; }
+        .quote-item:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .quote-text {
+            font-size: 32px;
+            font-weight: 300;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            color: #f5f5f7;
+        }
+
+        .quote-character {
+            font-size: 18px;
+            color: #0071e3;
+            font-weight: 500;
+        }
+
+        /* Specs */
+        .specs {
+            padding: 150px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 80px;
+        }
+
+        .spec-item {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(145deg, #1c1c1e, #2c2c2e);
+            border-radius: 20px;
+        }
+
+        .spec-value {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .spec-label {
+            font-size: 16px;
+            color: #86868b;
+        }
+
+        /* Footer */
+        footer {
+            background: #1c1c1e;
+            padding: 80px 30px 40px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: #86868b;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .disclaimer {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid #3a3a3c;
+            font-size: 12px;
+            color: #6e6e73;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 48px;
+            }
+            .hero-subtitle {
+                font-size: 20px;
+            }
+            .hero-iphone-text {
+                font-size: 42px;
+            }
+            .section-title {
+                font-size: 36px;
+            }
+            .quote-text {
+                font-size: 24px;
+            }
+            .specs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .phone {
+                width: 140px;
+                height: 550px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <div class="logo"></div>
+            <div class="nav-links">
+                <a href="#features">功能</a>
+                <a href="#quotes">猜测</a>
+                <a href="#specs">参数</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <p class="hero-tagline">超越想象，触手可及</p>
+        <p class="hero-iphone-text">iPhone 18</p>
+        <a href="#features" class="cta-button">立即探索</a>
+
+        <div class="phone-container">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="phone-notch"></div>
+                    <div class="hologram-effect"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">革命性功能</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3 class="feature-title">全息投影屏</h3>
+                <p class="feature-desc">告别实体屏幕，iPhone 18采用革命性全息投影技术，将画面直接投射到空气中，打造沉浸式视觉体验。</p>
+                <p class="feature-quote">"张伟：这就是我说的！没有屏幕，直接投影！" —《爱情公寓》</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">意念操控</h3>
+                <p class="feature-desc">全新脑机接口，实现真正的意念操控。想什么就做什么，无需触碰，你的思维就是最好的触控。</p>
+                <p class="feature-quote">"胡一菲：这手机是不是能读心啊？太可怕了！" —《爱情公寓》</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌈</div>
+                <h3 class="feature-title">透明机身</h3>
+                <p class="feature-desc">采用前所未有的透明材料技术，整机通透如水晶，科技与艺术的完美融合。</p>
+                <p class="feature-quote">"吕子乔：这是手机还是钻石？太闪了吧！" —《爱情公寓》</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔮</div>
+                <h3 class="feature-title">AI 预言家</h3>
+                <p class="feature-desc">内置超强AI，可根据你的习惯预测下一步需求，提前做好准备，比你自己更懂你。</p>
+                <p class="feature-quote">"曾小贤：我的天，这手机居然知道我想吃麻辣烫！" —《爱情公寓》</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌌</div>
+                <h3 class="feature-title">时空穿越通讯</h3>
+                <p class="feature-desc">突破时空限制，实现跨时空通话。连接过去与未来，一切皆有可能。</p>
+                <p class="feature-quote">"美嘉：那我能不能给小时候的自己打电话告诉她别借曾小贤钱？" —《爱情公寓》</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💎</div>
+                <h3 class="feature-title">永恒续航</h3>
+                <p class="feature-desc">采用量子能源技术，一次充电可使用整整一年，从此告别充电焦虑。</p>
+                <p class="feature-quote">"关谷：在日本，手机电池都是用一辈子的！" —《爱情公寓》</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quotes Section -->
+    <section class="quotes-section" id="quotes">
+        <div class="quote-container">
+            <h2 class="section-title" style="margin-bottom: 80px;">公寓里的大胆猜测</h2>
+
+            <div class="quote-item">
+                <p class="quote-text">"iPhone 18肯定只有摄像头，没有屏幕！全息投影才是未来！"</p>
+                <p class="quote-character">— 张伟，律师</p>
+            </div>
+
+            <div class="quote-item">
+                <p class="quote-text">"我觉得iPhone 18会变成一个手环，所有内容都直接显示在视网膜上！"</p>
+                <p class="quote-character">— 吕子乔，情场浪子</p>
+            </div>
+
+            <div class="quote-item">
+                <p class="quote-text">"iPhone 18肯定能读心术！你都不用开口，它就知道你想发什么！"</p>
+                <p class="quote-character">— 曾小贤，电台主持人</p>
+            </div>
+
+            <div class="quote-item">
+                <p class="quote-text">"我预测iPhone 18可以直接变成任何你需要的样子，手机、平板、电脑，随时随地！"</p>
+                <p class="quote-character">— 陈美嘉，财务专员</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs Section -->
+    <section class="specs" id="specs">
+        <h2 class="section-title">技术参数</h2>
+        <div class="specs-grid">
+            <div class="spec-item">
+                <div class="spec-value">∞</div>
+                <div class="spec-label">续航时间（年）</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-value">0%</div>
+                <div class="spec-label">边框宽度</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-value">全息</div>
+                <div class="spec-label">屏幕类型</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-value">意念</div>
+                <div class="spec-label">操控方式</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">iPhone 18 - 爱情公寓特别版</p>
+            <p class="footer-text">本页面纯属娱乐创意，仅供粉丝娱乐</p>
+            <div class="disclaimer">
+                <p>本页面为粉丝自制，与苹果公司无关。所有角色和台词引用自《爱情公寓》电视剧，版权归原作者所有。</p>
+                <p style="margin-top: 10px;">Apple、iPhone 是 Apple Inc. 的注册商标。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const phone = document.querySelector('.phone');
+
+            if (phone) {
+                phone.style.transform = `translateY(${scrolled * 0.08}px)`;
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
